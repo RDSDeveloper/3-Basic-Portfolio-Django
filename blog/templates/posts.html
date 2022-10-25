@@ -1,12 +1,19 @@
-<h1>Posts</h1>
+{% extends "layout.html" %}
 
-{% for post in posts %}
+{% block content %}
 
-    <h2>{{post.title}}</h2>
-    <p>{{post.description|striptags|truncatechars:100}}</p>
-    <p>{{post.date}}</p>
-    <img src="{{post.image.url}}" alt="{{post.title}}">
+    <h1>Posts</h1>
 
-    <a href="{% url "blog:post_detail" post.id %}">{{post.title}}</a>
+        {% for post in posts %}
 
-{% endfor %}
+            <h2>{{post.title}}</h2>
+            <p>{{post.description|striptags|truncatechars:100}}</p>
+            <p>{{post.date|date:"M d Y"|upper}}</p>
+            <img src="{{post.image.url}}" alt="{{post.title}}">
+
+            <a href="{% url "blog:post_detail" post.id %}">{{post.title}}</a>
+
+        {% endfor %}
+
+{% endblock %}
+
